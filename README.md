@@ -1,4 +1,4 @@
-# PhpDogDisplay
+# DogDisplayForPhp
 
 ### **Welcome to the PhsDogDisplay Repository!**
 
@@ -14,7 +14,7 @@
 **Technology: PHP, HTML, CSS, Javascript, Python**
 
 **Overview:**
-This project, PhpDogDisplay, is a web-based application mainly developed as a PHP web server application. It's part of a series of implementations that showcase the same core functionality across different programming languages and frameworks. The primary objective of this project is to demonstrate my ability to adapt and replicate a consistent user experience and functionality in various technological environments.
+This project, DogDisplayForPhp, is a web-based application mainly developed as a PHP web server application. It's part of a series of implementations that showcase the same core functionality across different programming languages and frameworks. The primary objective of this project is to demonstrate my ability to adapt and replicate a consistent user experience and functionality in various technological environments.
 
 **Functionality:**
 At its heart, the application presents a simple, intuitive interface consisting of a header with a title and a centrally-located button. Upon user interaction with the button, the application initiates a state transition, displaying a loading spinner while processing an HTTP request. The outcomes are twofold:
@@ -34,11 +34,11 @@ This project is part of a larger journey, where I replicate a base application c
 
 
 ## Versioning
-We use [Semantic Versioning](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mittons/PhpDogDisplay/tags). 
+We use [Semantic Versioning](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mittons/DogDisplayForPhp/tags). 
 
 ### Roadmap
 
-Current Version: v0.1.5
+Current Version: v0.1.6
 
 As the application evolves, the following key developments are planned:
 
@@ -56,6 +56,8 @@ These steps are aimed at enhancing the application's overall quality and efficie
 - **The Dog API:** This application uses data from [The Dog API](https://www.thedogapi.com). I route the traffic through my own private backend proxy in order to secure my user key for the API, in line with the [The Dog API TOS](https://thedogapi.com/terms).
 
 - **ChatGPT:** Powered by OpenAI, specifically ChatGPT-4. Files in this project vary from between being Content that is completely AI generated to being completely human-generated. The term Content, and other relevant definitions, can be observed on [The OpenAI TOS page](https://openai.com/policies/terms-of-use#using-our-services).
+
+- **PHP Acknowledgement:** This product includes PHP software, freely available from <http://www.php.net/software/> 
 
 ## License
 This project is licensed under the [MIT LICENSE](LICENSE) - see the file for details.
