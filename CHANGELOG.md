@@ -41,5 +41,13 @@
 
 - **Fixed link error in README:** Removed additional parenthesis from README.md that was preventing correct hyperlink generation.
 
+## [0.1.6] - 2024-01-23
+
+- **Changed name of project:** from ~~PhpDogDisplay~~ to DogDisplayForPhp. Safer for potential licensing issues. Places the focus on the functionaly developed in this source code. Shows that the project functions in conjuction with the language, while maintaining distinctiveness as an independent project.
+
+- **Licensing:** Improved licensing references a bit.
+
+- **Prepare for Showcase and Build from Source Instructions:** Added a script or two, that will at least for a while, be a used as part of showcasing and testing the project in the next few updates.
+
 *Current version of the ChangeLog is powered by OpenAI, ChatGPT-4*
 
