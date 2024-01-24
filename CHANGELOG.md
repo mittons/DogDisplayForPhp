@@ -49,5 +49,17 @@
 
 - **Prepare for Showcase and Build from Source Instructions:** Added a script or two, that will at least for a while, be a used as part of showcasing and testing the project in the next few updates.
 
+## [0.1.7] - 2024-01-24
+
+### Fixed
+
+- **Namespaces and imports** 
+  - Fixed namespace of E2ERoutesTest.php. 
+  - Added necessary imports to app\Providers\AppServiceProvider.php
+    - Somehow the app seemd to work without this neseccary import on my computer (win 10), on a remote PaaS service. But not on my build PHP from source on docker base image solution.
+
+ - **Showcase_scripts:** - Made a change to the test_server_endpoints.py script, previous version worked on Ubuntu but apparently needed just a little touch, a bit of spice, to work on Windows. (Script is still not connected to anything else on here, fyi).
+
+
 *Current version of the ChangeLog is powered by OpenAI, ChatGPT-4*
 

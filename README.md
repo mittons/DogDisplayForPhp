@@ -38,7 +38,7 @@ We use [Semantic Versioning](https://semver.org/) for versioning. For the versio
 
 ### Roadmap
 
-Current Version: v0.1.6
+Current Version: v0.1.7
 
 As the application evolves, the following key developments are planned:
 
