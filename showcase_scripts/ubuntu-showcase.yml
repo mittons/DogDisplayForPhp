@@ -1,0 +1,133 @@
+name: Build and Showcase for Ubuntu - PHP
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: 1. Preparing the Project
+      uses: actions/checkout@v4
+      with:
+        repository: 'mittons/DogDisplayForPhp'
+        path: 'DogDisplayForPhp' # Directory to clone the second repo into
+      
+
+    - name: 2. Setting up the Environment - Update package lists and install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget pkg-config build-essential autoconf bison re2c libxml2-dev libsqlite3-dev libonig-dev
+
+    - name: 3. Building PHP and Extensions - Download and compile PHP
+      run: |
+        wget https://github.com/php/php-src/archive/refs/tags/php-8.3.2.tar.gz
+        tar -xzf php-8.3.2.tar.gz
+        cd php-src-php-8.3.2
+        ./buildconf --force
+        ./configure
+        make -j$(nproc)
+        sudo make install
+        php -v
+        cd ..
+
+    - name: 3. Building PHP and Extensions - Compile and install PHP extensions
+      run: |
+        EXT_DIR="php-src-php-8.3.2/ext"
+        EXTENSIONS=("mbstring" "curl" "openssl")
+        mv "php-src-php-8.3.2/ext/openssl/config0.m4" "php-src-php-8.3.2/ext/openssl/config.m4"
+        cd "${EXT_DIR}"
+        for EXT in "${EXTENSIONS[@]}"
+        do
+          case $EXT in
+            curl)
+                sudo apt-get install -y libcurl4-openssl-dev
+                ;;
+            openssl)
+                sudo apt-get install -y libssl-dev
+                ;;
+          esac
+          cd "${EXT}"
+          phpize
+          ./configure
+          make
+          sudo make install
+          cd ..
+        done
+        cd ../..
+
+    - name: 3. Building PHP and Extensions - Setup php.ini
+      run: |
+        PHP_INI_FILE="/usr/local/lib/php.ini"
+        sudo cp php-src-php-8.3.2/php.ini-production ${PHP_INI_FILE}
+        sudo sed -i 's/;extension=curl/extension=curl/' "$PHP_INI_FILE"
+        sudo sed -i 's/;extension=mbstring/extension=mbstring/' "$PHP_INI_FILE"
+        sudo sed -i 's/;extension=openssl/extension=openssl/' "$PHP_INI_FILE"
+        echo "Modifications to php.ini completed."
+
+    - name: 4. Configuring Dependencies - Install Composer and dependencies
+      run: |
+        sudo apt-get install -y unzip curl git python3 python3-pip
+        mkdir compo
+        cd compo
+        curl -sS https://getcomposer.org/installer -o composer-setup.php
+        php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+        cd ..
+        rm -rf compo
+        
+        
+        cd DogDisplayForPhp
+        composer install
+
+    - name: 4. Configuring Dependencies - Setup example env file for testing
+      run: |
+        cd DogDisplayForPhp 
+
+        cp ./.env-example ./.env
+
+    - name: 5. Server-Side Tests
+      run: |
+        cd DogDisplayForPhp 
+        
+        php artisan test
+
+    - name: 6. Execute Showcase Run of Server
+      run: |
+        sudo pip3 install requests
+
+        cd DogDisplayForPhp
+
+        cp showcase_scripts/test_server_endpoints.py .
+
+        php artisan serve > test_run_output.log 2>&1 &
+        sleep 5
+        
+        python3 test_server_endpoints.py
+
+    - name: 7. Display Server Logs from Showcase Run
+      run: |
+        echo "##############=="
+        echo "#  SERVER LOG   "
+        echo "######=========="
+        echo " "
+        
+        cd DogDisplayForPhp
+        
+        cat test_run_output.log
+
+
+    - name: 8. Display Server Response Logs from Showcase Run (Caution - LARGE Log File)
+      run: |
+        echo "#############=="
+        echo "#  RESPONSE    "
+        echo "######========="
+        echo " "
+
+        cd DogDisplayForPhp
+
+        cat server_response_data_out.txt
