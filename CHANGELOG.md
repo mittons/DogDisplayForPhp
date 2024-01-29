@@ -61,5 +61,16 @@
  - **Showcase_scripts:** - Made a change to the test_server_endpoints.py script, previous version worked on Ubuntu but apparently needed just a little touch, a bit of spice, to work on Windows. (Script is still not connected to anything else on here, fyi).
 
 
+
+## [0.2.0] - 2024-01-29
+
+### Added
+
+- **Build Instructions:** Detailed instructions on how to set up the application from source added in BUILD.md
+
+- **Showcase Instructions:** Instructions on how to run the application from source and showcase its functionality. Includes a GitHub Actions setup-build-test-run script.
+
+- **Readme Sections for Installation and Showcase:** Added sections to README.md for the added build instructions and the showcase instructions.
+
 *Current version of the ChangeLog is powered by OpenAI, ChatGPT-4*
 
