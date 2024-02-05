@@ -123,7 +123,7 @@
 <body>
     <div id="top-container">
         <div class="header-bar">
-            Dog Diversity Galore! 🐶
+            Dog Diversity Abundance! 🐶
         </div>
         <div class="button-row" style="background-color: white;">
             <div class="button-container">
@@ -180,7 +180,7 @@
     function showSnackbar() {
         var snackbar = document.getElementById("snackbar");
         snackbar.style.visibility = "visible";
-        setTimeout(function(){ snackbar.style.visibility = "hidden"; }, 4000);
+        setTimeout(function(){ snackbar.style.visibility = "hidden"; }, 6000);
     }
 
 </script>
